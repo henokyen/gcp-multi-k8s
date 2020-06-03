@@ -1,7 +1,6 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-<<<<<<< HEAD
     name: server-deployment
 spec:
     replicas: 3
@@ -36,40 +35,3 @@ spec:
                         secretKeyRef: 
                             name: pgpassword
                             key: PGPASSWORD
-=======
-  name: server-deployment
-spec:
-  replicas: 3
-  selector:
-    matchLabels:
-      component: server
-  template:
-    metadata:
-      labels:
-        component: server
-    spec:
-      containers:
-        - name: server
-          image: henok2346/multi-server
-          ports:
-            - containerPort: 5000
-          env:
-            - name: REDIS_HOST
-              value: redis-cluster-ip-service
-            - name: REDIS_PORT
-              value: '6379'  # a value for an environmetal variable must be in quotes to pass it as string
-            - name: PGUSER
-              value: postgres
-            - name: PGHOST
-              value: postgres-cluster-ip-service # the name of the clusterIp service that is attached to 
-                                                  # the postgres contianer
-            - name: PGPORT
-              value: '5432'
-            - name : PGDATABASE
-              value: postgres
-            - name: PGPASSWORD
-              valueFrom: 
-                secretKeyRef:
-                  name: pgpassword 
-                  key: PGPASSWORD # This is the key we used when we create the pgpassword secret object
->>>>>>> c59b5152e6617232d80619649c46d0f809e20e49

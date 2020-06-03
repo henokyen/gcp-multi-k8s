@@ -1,5 +1,4 @@
 apiVersion: v1
-<<<<<<< HEAD
 kind: PersistentVolumeClaim # it is not an actula volumem, 
                             #it is just a clain that kubernetes tries to fullfill from the the host harddisk
 metadata:
@@ -10,20 +9,3 @@ spec:
     resources:
         requests:
             storage: 2Gi
-=======
-kind: PersistentVolumeClaim
-metadata:
-  name: database-persistent-volume-claim
-
-#this is saying that if we attach this claim (specified at the kind section above)to a POD Kubernetes must find an instance of storage 
-#like a slice of your hard drive that meets these requirements.
-spec:
-  accessModes: #means that we want to get some instance of storage like a slice of your hard drive that can be used
-                #by a single node at a time and to be precise this that single note can use it and both read and write information to that volume.
-    - ReadWriteOnce
-  resources:
-    requests:
-      storage: 2Gi
-
-
->>>>>>> c59b5152e6617232d80619649c46d0f809e20e49
