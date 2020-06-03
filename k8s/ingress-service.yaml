@@ -1,0 +1,60 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+<<<<<<< HEAD
+    name: ingress-service
+    # additional configuration options that are going to specify a little kind of 
+    #higher level configuration around the ingress object being created
+    annotations: 
+        kubernetes.io/ingress.class: nginx # we want to create nginx controller based on the nginx project
+        #configure how our copy of Nginx behaves.
+        #if we end up matching a route like /api after deciding to send it to the server
+        #that configuration is going first do a little bit of a rewrite on the request.
+        #And essentially it's going to remove the /api part.
+        nginx.ingress.kubernetes.io/rewrite-target: /$1 # remove the /api part from the request
+spec:
+    rules:
+        - http:
+            paths:
+                - path: /?(.*)
+                  backend:
+                    serviceName: client-cluster-ip-service
+                    servicePort: 3000
+                - path: /api/?(.*)
+                  backend:
+                    serviceName: server-cluster-ip-service
+                    servicePort: 5000
+=======
+  name: ingress-service
+  #annotations are essentially additional configuration options that are going to specify a little bit kind
+  #of higher level configuration around the ingress object that it gets created.
+  annotations: 
+    #So this configuration rule is essentially telling kubernetes that we want to create a ingress
+    #controller based on the Nginx project.
+    kubernetes.io/ingress.class: nginx 
+    #configure how our copy of Nginx behaves.
+    #if we end up matching a route like /api after deciding to send it to the server
+    #that configuration is going first do a little bit of a rewrite on the request.
+    #And essentially it's going to remove the /api part.
+    nginx.ingress.kubernetes.io/rewrite-target: /
+spec:
+  rules:
+    - http:
+        paths:
+            # If someone ever comes to the path of just / by itself or any route that looks like / followed
+            #by anything besides /api then we want to send that request to whatever set of pods are governed
+            #by the service of client-cluster-ip-service.
+          - path: /
+            backend:
+              serviceName: client-cluster-ip-service #name of the clusterIP service attached to the client pod
+              servicePort: 3000
+            #Then if a request came in with a leading route name of api we want it to to instead send it to the set
+            #of port of pods that are governed or managed by the server-cluster-ip-service.
+          - path: /api/
+            backend:
+              serviceName: server-cluster-ip-service # name of the clusterIP service that is attached to the server pod
+              servicePort: 5000
+
+
+
+>>>>>>> c59b5152e6617232d80619649c46d0f809e20e49

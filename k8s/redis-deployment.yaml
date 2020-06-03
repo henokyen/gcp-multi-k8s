@@ -1,0 +1,38 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+<<<<<<< HEAD
+    name: redis-deployment
+spec:
+    replicas: 1
+    selector:
+        matchLabels:
+            component: redis
+    template: # pod template
+        metadata:
+            labels:
+                component: redis
+        spec:
+            containers:
+                - name: redis
+                  image: redis
+                  ports:
+                    - containerPort: 6379
+=======
+  name: redis-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      component: redis
+  template:
+    metadata:
+      labels:
+        component: redis
+    spec:
+      containers:
+        - name: redis
+          image: redis # copy of redis from docker hub
+          ports:
+            - containerPort: 6379 # open this port
+>>>>>>> c59b5152e6617232d80619649c46d0f809e20e49

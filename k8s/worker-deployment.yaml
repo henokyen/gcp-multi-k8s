@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+    name: worker-deployment
+spec:
+    replicas: 1
+    selector:
+        matchLabels:
+            component: worker
+    template:
+        metadata: 
+            labels:
+                component: worker
+        spec:
+            containers:
+                -  name: worker
+                   image: stephengrider/multi-worker
+                   #it doesn't need a port config because no other object within the cluster would access it.
+                   #but it access others
+                   #this environmental variables will be created when the container is created out of this deployment
+                   env: 
+                    - name: REDIS_HOST
+                      value: redis-cluster-ip-service #this is the name of the redis clusterip service from the redis-cluster-ip-service.yaml
+                    - name: REDIS_PORT
+                      value: '6379'

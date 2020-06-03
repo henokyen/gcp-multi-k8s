@@ -1,0 +1,25 @@
+apiVersion: v1
+kind: Service
+metadata:
+<<<<<<< HEAD
+    name: server-cluster-ip-service
+spec:
+    type: ClusterIP
+    selector:
+        component: server
+    #The port property is going to be how other pods or other objects inside of our cluster 
+    #are going to access the pod that we are kind of governing access to and 
+    #The target port is going to be the port on the target pod that we are providing access to.
+    ports:
+        - port: 5000
+          targetPort: 5000
+=======
+  name: server-cluster-ip-service
+spec: # specifies how this service bahavous
+  type: ClusterIP
+  selector:
+    component: server
+  ports:
+    - port: 5000
+      targetPort: 5000
+>>>>>>> c59b5152e6617232d80619649c46d0f809e20e49

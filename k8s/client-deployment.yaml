@@ -1,0 +1,39 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+<<<<<<< HEAD
+    name: client-deployment
+spec: # meaning configuration of this deployment
+    replicas: 3
+    selector: # to which pods this is going to be a deployment of 
+        matchLabels:
+            component: web
+    template: # template for the pods
+        metadata:
+            labels:
+                component: web #label for the pods
+        spec: # spec of the container that would run inside the component:web pod
+            containers:
+                - name: client
+                  image: stephengrider/multi-client 
+                  ports:
+                    - containerPort: 3000
+=======
+  name: client-deployment
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      component: web
+  template:
+    metadata:
+      labels:
+        component: web
+    spec:
+      containers:
+        - name: client
+          image: henok2346/multi-client
+          ports:
+            - containerPort: 3000
+
+>>>>>>> c59b5152e6617232d80619649c46d0f809e20e49
