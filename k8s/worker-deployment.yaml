@@ -14,7 +14,7 @@ spec:
         spec:
             containers:
                 -  name: worker
-                   image: stephengrider/multi-worker
+                   image: henok2346/multi-worker
                    #it doesn't need a port config because no other object within the cluster would access it.
                    #but it access others
                    #this environmental variables will be created when the container is created out of this deployment
