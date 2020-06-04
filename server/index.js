@@ -80,10 +80,6 @@ app.post('/values', async (req, res) => {
   res.send({ working: true });
 });
 
-<<<<<<< HEAD
 app.listen(5000, (err) => {
-=======
-app.listen(5000, err => {
->>>>>>> c59b5152e6617232d80619649c46d0f809e20e49
   console.log('Listening');
 });
