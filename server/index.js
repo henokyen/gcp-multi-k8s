@@ -16,7 +16,6 @@ const pgClient = new Pool({
   host: keys.pgHost,
   database: keys.pgDatabase,
   password: keys.pgPassword,
-<<<<<<< HEAD
   port: keys.pgPort,
 });
 
@@ -25,26 +24,13 @@ pgClient.on('connect', () => {
     .query('CREATE TABLE IF NOT EXISTS values (number INT)')
     .catch((err) => console.log(err));
 });
-=======
-  port: keys.pgPort
-});
-pgClient.on('error', () => console.log('Lost PG connection'));
-
-pgClient
-  .query('CREATE TABLE IF NOT EXISTS values (number INT)')
-  .catch(err => console.log(err));
->>>>>>> c59b5152e6617232d80619649c46d0f809e20e49
 
 // Redis Client Setup
 const redis = require('redis');
 const redisClient = redis.createClient({
   host: keys.redisHost,
   port: keys.redisPort,
-<<<<<<< HEAD
   retry_strategy: () => 1000,
-=======
-  retry_strategy: () => 1000
->>>>>>> c59b5152e6617232d80619649c46d0f809e20e49
 });
 const redisPublisher = redisClient.duplicate();
 
